@@ -32,4 +32,3 @@ class TestPostsCache(TestCase):
         response_3 = self.client.get(reverse('posts:index'))
         content_3 = response_3.content
         self.assertNotEqual(content_1, content_3)
-

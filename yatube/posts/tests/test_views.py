@@ -3,7 +3,7 @@ from django.core.cache import cache
 from django.test import TestCase, Client
 from django.urls import reverse
 from django import forms
-from ..models import Post, Group, Comment, Follow
+from ..models import Post, Group, Comment
 
 User = get_user_model()
 
