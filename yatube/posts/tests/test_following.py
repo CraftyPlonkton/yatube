@@ -1,9 +1,6 @@
-from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
 from django.urls import reverse
-from ..models import Follow, Post
-
-User = get_user_model()
+from ..models import Follow, Post, User
 
 
 class TestFollowing(TestCase):

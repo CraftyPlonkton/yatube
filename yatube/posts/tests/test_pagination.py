@@ -1,10 +1,7 @@
-from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
 from django.shortcuts import reverse
-from ..models import Post, Group
+from ..models import Post, Group, User
 from ..views import POSTS_ON_PAGE
-
-User = get_user_model()
 
 
 class PostsPaginatorTest(TestCase):
