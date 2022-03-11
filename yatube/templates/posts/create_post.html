@@ -23,35 +23,17 @@
           {% else %}
           {% url 'posts:post_create' %}
           {% endif %}">
-            <input type="hidden" name="csrfmiddlewaretoken" value="">
             <div class="form-group row my-3 p-3">
-              <label>
-                {{ form.text.label }}
-                <span class="required text-danger">*</span>
-              </label>
               {% csrf_token %}
-              {{ form.text|addclass:"form-control" }}
-              <small id="id_text-help" class="form-text text-muted">
-                {{ form.text.help_text }}
-              </small>
-            </div>
-            <div class="form-group row my-3 p-3">
-              <label>
-                {{ form.group.label }}
-              </label>
-                {{ form.group|addclass:"form-control" }}
-              <small id="id_group-help" class="form-text text-muted">
-                {{ form.group.help_text }}
-              </small>
-            </div>
-            <div class="form-group row my-3 p-3">
-              <label>
-                {{ form.image.label }}
-              </label>
-              {{ form.image|addclass:"form-control" }}
-              <small id="id_image-help" class="form-text text-muted">
-                {{ form.image.help_text }}
-              </small>
+              {% for field in form %}
+                <label>
+                  {{ field.label }}
+                </label>
+                {{ field|addclass:"form-control" }}
+                <small id="id_text-help" class="form-text text-muted">
+                  {{ field.help_text }}
+                </small>
+              {% endfor %}
             </div>
             <div class="d-flex justify-content-end">
               <button type="submit" class="btn btn-primary">

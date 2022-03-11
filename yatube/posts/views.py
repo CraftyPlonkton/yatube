@@ -34,13 +34,10 @@ def profile(request, username):
     template = 'posts/profile.html'
     author = get_object_or_404(User, username=username)
     posts = author.posts.all()
-    if request.user.is_anonymous:
-        following = False
-    else:
-        following = Follow.objects.filter(
-            user=request.user,
-            author=author
-        ).exists()
+    following = request.user.is_authenticated and Follow.objects.filter(
+        user=request.user,
+        author=author
+    ).exists()
     paginator = Paginator(posts, POSTS_ON_PAGE)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -120,7 +117,7 @@ def follow_index(request):
 def profile_follow(request, username):
     if request.user.username == username or Follow.objects.filter(
             user=request.user,
-            author=User.objects.get(username=username)
+            author=get_object_or_404(User, username=username)
     ).exists():
         return redirect('posts:profile', username)
     Follow.objects.create(
